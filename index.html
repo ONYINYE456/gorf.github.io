@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- meta tag below makes the width of the screen the same width as the device the initial scale tells you what level of zoom you want to be in when you load the page -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>olivia geogria</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+/>
+    <!-- with rel="preconnect" you can tell the browser to do the DNS lookup and establish the connection ahead of time, while the browser is rendering the page contents. These will help the page to load more quickly -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+           <a href="#">
+            <span>O</span>LIVIA<span> G</span>EOGRIA
+           </a> 
+        </div>
+        <div class="nav-list">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#about-us" class="nav-link">About</a>
+            <a href="#pricing" class="nav-link">Products</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+    </nav>
+    <!-- End of Navbar --> l
+    <!-- Menu -->
+    <div class="menu">
+        <div class="line line-1"></div>
+        <div class="line line-2"></div>
+        <div class="line line-3"></div>
+    </div>
+    <!-- End of Menu -->
+    <div class="container">
+        <!-- Section 1 -->
+        <section class="section-1" id="home">
+            <div class="banner">
+                <h1 class="banner-heading">
+                    <span class="heading-1">Cables</span>
+                    <span class="heading-2">Copper</span>
+                    <span class="heading-3">Wires </span>
+                    <span class="heading-4">Wires products</span>
+                </h1>
+            
+                <p class="banner-paragraph">Lorem ipsum dolor</p>
+
+                <button type="button" class="banner-btn">Discover Now</button> 
+            </div>  
+        </section>
+        <!-- End of Section 1 -->
+        <section class="section-2" id="about-us">
+        <h1 class="section-heading">About Us</h1>
+        <div class="section-heading-line"></div>
+
+     <div class="section-2">
+    <div class="video-wrapper">
+        <video class="video" controls>
+            <source src="image/video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="controls">
+            <div class="video-bar-wrapper">
+                <div class="video-bar"></div>
+            </div>
+            <div class="buttons">
+                <button><i class="fas fa-play"></i></button>
+                <button><i class="fas fa-pause"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="section-2-paragraph">
+        <i class="fas fa-quote-left"></i>
+        <p>Gorf specialize in manufacturing and distributing premium copper wires and cables, catering to diverse needs across 
+        residential, commercial, and industrial sectors. Our state-of-the-art facilities and experienced team ensure that every 
+        product meets the highest standards of quality and safety.</p>
+        <i class="fas fa-quote-right"></i>
+        
+    </div>
+</div>
+
+    </section>
+        <!-- End of Section 2 -->
+
+        <!-- Section 3 -->
+       <section class="section-3" id="pricing">
+       <h1 class="section-heading">Products</h1>
+    <div class="gallery" onclick="openLightbox(event)">
+        <img src="image/pic 10.jpg"
+            alt="Image 1">
+        <img src="image/pic6.jpg"
+            alt="Image 2">
+        <img src="image/pic8.jpg"
+            alt="Image 3">
+        <img src="image/pic5.jpg"
+            alt="Image 4">
+    </div>
+
+    <!-- Lightbox container -->
+    <div id="lightbox">
+        <!-- Close button -->
+        <span id="close-btn" onclick="closeLightbox()">&times;</span>
+
+        <!-- Main lightbox image -->
+        <img id="lightbox-img" src="" alt="lightbox image">
+
+        <!-- Thumbnails container -->
+        <div id="thumbnail-container">
+            <!-- Thumbnails will be added dynamically using JavaScript -->
+        </div>
+
+        <!-- Previous and Next buttons -->
+        <button id="prev-btn" onclick="changeImage(-1)">&lt; Prev</button>
+        <button id="next-btn" onclick="changeImage(1)">Next &gt;</button>
+    </div>
+    </section>
+    <!-- End of Section 3 -->
+    <!-- Section 4 -->
+    <section class="section-4" id="contact">
+        <h1 class="section-heading">Contact</h1>
+        <div class="section-heading-line"></div>
+        <div class="contact-wrapper">
+            <div class="contact-details">
+                <div class="phone">
+                    <i class="fas fa-mobile-alt"></i> 
+                    <h3>Phone</h3> 
+                    <p>+447557968567</p> 
+                    <p>(646)-43432678</p>
+                </div> 
+            
+            <div class="address">
+               <i class="fas fa-map-marker-alt"></i> 
+               <h3>Address</h3>
+               <p>250W6041 Ave san francisco</p>
+            </div>
+            <div class="email">
+                <i class="far fa-envelope"></i>
+                <h3>Email</h3>
+                <p>olivigergia44@gmail.com</p>
+            </div>
+        </div>
+        <h1>Get in Touch</h1>
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name">
+                <input type="text" placeholder="Your Email">
+                <textarea placeholder="Your Message"></textarea>
+                <input type="submit" value="Send Message">
+            </form>
+        </div>
+    </section>
+        <!-- End of Section 4 -->
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-nav">
+                <a href="#home">Home</a>
+                <a href="#about-us">About Us</a>
+                <a href="#pricing">Products</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <p class="copyright">
+                Copyright &copy: Gorf All Rights Reserved
+            </p>
+        </footer>
+        <!-- End of Footer -->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script type = "module" src="script.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

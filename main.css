@@ -1,0 +1,867 @@
+
+/* Common Styles */
+/* use * to access all the styles */
+*{
+    /*get rid of default margin and padding from every element  */
+    margin: 0; 
+    padding: 0;
+    /* box-sizing property-sets how the total width and height of an element is calculated-it allows you to include the padding and border in an elements total width and height. If you set box-sizing: border-box; on an element, padding and border are included in the width and height. Both divs are the same size now. */
+    box-sizing: border-box;
+    /* the outline property in CSS draws a line around the outside of an element. its similar to border except that it always goes around all the sides, you cant specify particular sides. Its not part of the box model, so it wont affect the position of the element or adjacent elements(nice for debugging). */
+    outline: none;
+    /* text-decoration: none removes the default underline under link elements */
+    text-decoration: none;
+    /* list-style-type removes the default bullets from list elements */
+    list-style-type: none;  
+  }
+  
+  /* using rem as the measurement unit...1 rem is 16 pixels by default because the font size of the element is equal to 16 pixels...to convert one rem into 10 pixels the default size of the element has to be decreased...setting it to 62.5 all the elements are smaller and one rem is equal to 10 pixels */
+  html{
+      font-size: 62.5%;
+      /* scroll behavior makes the site scoll to the areas when the nav links are clicked */
+      scroll-behavior: smooth;
+  }
+  .section-heading{
+    font-family: "Oswald",sans-serif;
+    font-size: 10rem;
+    font-weight: 300;
+    color: #ddd;
+    /* margin-right below puts some space between the heading and the line in the about us text--margins are used to create space around elements, outside of any defined borders */
+    margin-right: 4rem;
+  }
+  .section-heading-line{
+    width: 15rem;
+    height: 0.2rem;
+    background-color: #ddd;
+  
+  }
+  .section-1, .section-2, .section-3 {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden; /* Ensure no overflow */
+    padding: 0 10rem; /* Adjust padding as needed */
+    box-sizing: border-box;
+}
+
+.section-2-paragraph {
+    width: 80rem; /* Adjusted from 800rem to 80rem */
+    max-width: 100%; /* Ensure it doesn't exceed viewport width */
+    /* other styles */
+}
+
+  
+  /* End Of Common Styles */
+  /* Navbar */
+  .navbar{
+    width: 100%;
+    height: 8rem;
+    background-color: rgba(0,0,0,0.9);
+    position: fixed;
+    /* the top property in CSS is used to describe the top position of an element. The top property varies with the position of the element. If the position value is fixed or absolute, the element adjusts its top edge with respect to the top edge of its parent element or the block that holds it. The top property affects the verticle position of a positioned element. It has no effect on non-positioned elements. */
+    top: -8rem;
+    /* at this point the navbar is currently hidden because it is behind the banner. Setting the z-index to 10 makes it visible. now it crosses the top of the screen with the semi transparent black color assigned in the background color above in this section */
+    z-index: 10;
+    /* create some space around the text by adding 3rem on all 4 sides */
+    padding: 3rem;
+    transition: height 0.5s;
+    animation: animateNavbar 1s .5s forwards;
+  }
+  @keyframes animateNavbar{
+  0%{
+    top: -8rem;
+  }
+  100%{
+    top: 0;
+  }
+  } 
+  /* selecting navbar with class change added from the scripts.js file. 'change' has a click event added to it and on click, the height of the navbar will change to take up 100 percent of the viewer height. to make the animation smooth, the transition is added to the navbar selector above */
+  .navbar.change{
+    height: 100vh;
+  }
+  .logo{
+    position: absolute;
+    top: 1.5rem;
+    left: 4rem;
+  }
+  .logo a{
+    font-family: 'MADE Soulmaze',sans-serif;
+    font-size: 2.5rem;
+    color: #eee;
+    letter-spacing: 0.1rem;
+  }
+  .logo span{
+    font-family: 'Made Soulmaze', sans-serif;
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: 	rgb(255,20,147);
+    letter-spacing: 0.1rem;
+  }
+  .nav-list{
+   position: absolute;
+   top: 25%; /*move the elements down 25% */
+   left: 50%;/*move the elements to the right 50%*/
+   /* tranform: translateX(-50%) moves the element backwards by half of the elements width, which results in the centers of the element and the container to overlap with one another. This centers the element */
+   transform: translateX(-50%);
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   opacity: 0;
+   visibility: hidden;
+   /* this transition makes the list of items smoothly hide when the menu icon is clicked to remove the items and shrink the navbar */
+   transition: all 0.2s; 
+  }
+  /* unlike above with .navbar.change where there is no space between .navbar and .change, a space is needed between .change and .nav-list because nav-list is the child of the navbar. nav-list above is set by default to opacity 0 and hidded so that it can be animated to be visible using .change below since .change has the click event that executes the the code*/
+  .change .nav-list{
+    opacity: 1;
+    visibility: visible;
+    /* When using transition: all, all properties that can transition will. 0.7s is the duration and 0.5 is the delay time */
+    transition: all 0.7s 0.5s;
+  }
+  .nav-link{
+    font-family: 'MADE Soulmaze',sans-serif;
+    font-size: 4rem;
+    letter-spacing: 0.3rem;
+    color: 	rgb(255,20,147);
+    margin: 2rem 0;/*set margin to 2rem on top and bottom and 0 on the left and right sides*/
+    transition: color .4s;
+  }
+  .nav-link:hover{
+    color: 	rgb(255,20,147);
+  }
+  /* End of Navbar */
+  
+  /* Menu */
+  .menu{
+    width: 4rem;
+    height: 4rem;
+    /* background-color: #eee; */
+    position: fixed;
+    top: 2rem;
+    /* when position is set to absolute or fixed, the right property specifies the distance between the elements outer margin of the right edge of the inner border of the right edge of the containing block. When position is set to relative, the right property specifies the distance the elements right edge is moved to the left from its normal position. When position is set to sticky, the right property is used to compute the sticky-contraint rectangle. When position is set to static, the right property has no effect */
+    right: 4rem;
+    z-index: 100;
+    /* all the lines are on top of each other so use flexbox to separte them the lines are child elements of menu div so the changes need to be in the menu section */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    cursor: pointer;
+  }
+  .line{
+    width: 100%;
+    height: 0.2rem;
+    background-color: 	rgb(255,20,147);
+    /* the transition below makes the animation of the lines into the arrow smooth */
+    transition: transform 0.3s;
+  }
+  .line-1{
+    width: 50%;
+    
+  }
+  .change .line-1{
+    /* in order to move line-1 to the right side, set x direction to 100% as for the Y direction it is set to 1 rem. This will move line-1 on top of line-3. Use the rotate function to rotate line-1 by -35 degrees. the line will not be placed correctly since it rotates from its center by default. Changed the pivot to right using transform-origin to place the line in the right place*/
+    transform: translate(100%, 1rem) rotate(-35deg);
+    transform-origin: right;
+  }
+  .line-3{
+    width: 50%;
+    /* margin-left set to auto places the line to the right side of the container. The property sets the width of the left margin of the element (the line) inside the container. setting it to auto is what moves it to the right. If margin-left and margin-right are set to auto, it centers the element in the container. This works if the position of the parent element is set to fixed */
+    margin-left: auto;
+    
+  }
+  .change .line-3{
+    /* line-3 is already on the right side so no need to translate X */
+    transform: translateY(-1rem) rotate(35deg);
+    transform-origin: right; 
+  }
+  /* End of Menu */
+  
+  /* section 1 */
+  
+  /* in order to position the absolute div (banner) below according to its parent element(section-1), the section is set to position relative   */
+  .section-1{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+        url('image/picture1.webp') no-repeat center center; 
+    background-size: cover;
+  }
+  /* the banner class which is on the div inside the section is set to absolute inside the section */
+  .banner{
+    width: 100%;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);/*the translateX() function repositions an element horizontally on the 2D plane. Its result is a transform-function datatype. */
+  
+    /* the transform-function data type is specified using on of the tramformation functions. Each function applies a geometric operation in either 2D or 3D */
+    text-align: center;
+  }
+  
+  .banner-heading{
+    margin-bottom: 4rem;
+    height: 20rem;
+    /* We will move the headings closer to the user with the translate the function in the 3D environment,and also we will hide them.This will be the default state of the heading after that will display the headings in order with some intervals. So first of all, let's create a 3D environment for that. We have to use one of the properties called Perspective*/
+    perspective: 50rem;
+    /* when letter spacing was added in the .banner-heading span section, the scrollbar appeared so use overflow: hidden to fix */
+    overflow: hidden;
+  }
+  
+  .banner-heading span {
+    font-family: "Oswald",sans-serif;
+    font-size: 12rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: 	rgb(255,20,147);
+    text-shadow: 0.3rem 0.3rem 0.6rem rgba(0,0,0,0.5);
+    /* put all headings on top of each other--they are all in a span so making the position absolute will place them all on top of each other */
+    position: absolute;
+    /* need to center all the headings so flexbox will do that */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* after setting up the 3D environment using perspective above,  let's move the headings and also hide them using opacity: 0. Let's use transport with translate z function. */
+    transform: translateZ(8rem);
+    opacity: 0;
+    /*And besides that, in order to make the effect look nicer, I'm going to increase the space between the letters. Let's set that spacing to three rem. */
+    letter-spacing: 3rem;
+  }
+  
+  /* Let's start with the first Heading. It's a scientific animation followed by the name of the animation, which is animateeading, then we need the duration 12 seconds, then the delay time is going to be three seconds for the first heading. And also we need to run the animation infinitely. */
+  .heading-1{
+    animation: animateHeading 12s 3s infinite;
+  }
+  .heading-2{
+    animation: animateHeading 12s 6s infinite;
+  }
+  .heading-3{
+    animation: animateHeading 12s 9s infinite;
+  }
+  .heading-4{
+    animation: animateHeading 12s 12s infinite;
+  }
+  /*Now it's time to create the CSS animations for the heading tags above and for that I'm going to use CSFs keyframes we need at sign,followed by the keyword keyframes.And then we have to set the name of the keyframes.Let's call it animate heading.  So we will add this cycle to all the headings, but with different the delay Times, therefore they will display and hide in order again. All the headings will perform the cycle. I mean, hiding, then displaying and then again hiding what they will do that with different delay times.*/
+  @keyframes animateHeading {
+    /*At the first step, from zero percent to three percent, the headings will be hidden, they will have the exact same properties that we assign to them by default.  */
+    0%{
+      transform: translateZ(8rem);
+      opacity: 0;
+      letter-spacing: 3rem;
+    }
+    /* So at three percent, we need transform, translateZ with zero. Then we have to make the element visible, let's add capacity to one and also decrease lateral spacing,make it one point five rem. */
+    3%{
+      transform: translateZ(0);
+      opacity: 1;
+      letter-spacing: 1.5rem;
+    }
+    /* After that, from four percent to twenty five percent, the heading will be visible and then from twenty five percent to 28 percent during this three percent, it will hide again. So we need year twenty five percent. */
+    25%{
+      transform: translateZ(0);
+      opacity: 1;
+      letter-spacing: 1.5rem;
+    }
+    /* and then from twenty five percent to 28 percent during this three percent, it will hide again. for the twenty eight percent. We need to make here some changes, we need to translate the function with 8rem than opacity zero and lateral spacing three rem.*/
+    28%{
+      transform: translateZ(8rem);
+      opacity: 0;
+      letter-spacing: 3rem;
+    }
+    /* And finally, from 28 percent to 100 percent, the heading will be hidden, so at 100 percent. We need to transform, translate the atrium, opacity zero, and that's spacing three rem. */
+    100%{
+      transform: translateZ(8rem);
+      opacity: 0;
+      letter-spacing: 3rem;
+    }
+  }
+  
+  /* the paragraph is hidden and now we have to create the CCWs keyframes. Let's call it fade animation, actually, but we'll use this animation for both elements in the paragraph and the bottom as well. So overall, we'll have two different steps. The starting point, zero percent and the ending point 100 percent. The only thing that we need to do is to make the element hidden at zero percent and make it visible at 100 percent.*/
+  
+  @keyframes fadeAnimation {
+    0%{
+      opacity: 0;
+      visibility: hidden;
+    }
+    100%{
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+  .banner-paragraph{
+    font-size: 4rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: rgba(0,0,0,0.6);
+    width: 30%;
+    /* use margin to create space at the bottom and center the paragraph*/
+    margin: 0 auto 6rem auto;
+    /* create space inside the top and bottom of the paragraph */
+    padding: 1rem 0;
+    box-shadow: 1rem 1rem 5rem rgba(0,0,0,0.5);
+    /* create animations for the paragraph-- First of all, hide the paragraph by default. set opacity zero.And visibility, hidden. */
+    opacity: 0;
+    visibility: hidden;
+    /* once the animation starts, the paragraph will hide again. To stop this from happening and keep the paragraph visible, you need forwards--the target will retain the computed values set by the last keyframe encountered during excecution */
+    animation: fadeAnimation 1s 1.5s forwards;
+  }
+  
+  /* So once we hover over the botton, then it will shine this shining effect. It will be created with a before pseudo element and will create these little white elements and we will move it on hover. */
+  /* select button with a before pseudo element.First of all, let's define content, make it empty.Then I'm going to set width and height on both of them to 100 percent.As for the background, I'm going to use linear gradient function.So the direction of the transition of the colors will be from left to right.And I'm going to use three different colors, the first one is going to be transparent.Then we will have the white color.And the third one is going to be, again, transparent. */
+  .banner-btn::before{
+    /* psuedo elemnts are tags you will see alot in css...this allows you to add elements into your code strictly from css and you will add it either before or after. Psuedo elements require you to use the content attribute to actually set what the content inside of this psuedo element is going to be. if there is no content you set it to an empty string */
+    content: "";
+    width: 100%;
+    height: 100%;
+    /* the direction of the transition will be from left to right--thats the first argument in the linear gradient arguments below */
+    background: linear-gradient(to right, transparent, #fff, yellow, transparent);
+    /* So right now, the element is not visible because we have to define the position, let's set position to absolute. Then in order to position it according to its parent elements, which is the button, we have to define the position of the button as relative. */
+    position: absolute;
+    /* And then use top position, make it zero. AS for the left property, I'm going to send it to minus 100 percent. */
+    top: 0;
+    left: -100%;
+    /* OK, so here we have the before psuedo elements, before we make it work, I'm going to skew it a little bit horizontally. So let's use transform. With the skewX function. And as the value, let's set it to 30 degrees. */
+    transform: skewX(-30deg);
+    /* move the before psuedo element to the right side on Hover, so let's select button with Hover.
+  Followed by the before studio element.And then set left property to 100 percent.Besides that, we need to transition. with values left and point five seconds */
+    transition: left 0.5s;
+  }
+  /* move the before psuedo element to the right side on hover, so let's select button with Hover. Followed by the before psuedo element.And then set left property to 100 percent. */
+  .banner-btn:hover::before{
+    left: 100%;
+    /* Besides that, we need to transition.We got left and point five seconds. */
+    transition: left 0.5s;
+  }
+  
+  .banner-btn{
+    width: 30rem;
+    height: 6rem;
+    /* in linear gradient, the direction of the colors will be to the right */
+    background: linear-gradient(to right, 	rgb(255,20,147), #810554);
+    color: #fff;
+    font-size: 2rem;
+    text-transform: uppercase;
+    border-radius: 3rem;
+    border: 0.1rem solid 	rgb(255,20,147);
+    box-shadow:  (1rem 2rem 3rem rgba(0,0,0,0.5));
+    text-shadow: .6rem .3rem .2rem rgba(0,0,0,0.4);
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    animation: fadeAnimation 1s 2s forwards;
+    /* Then in order to position it according to its parent elements, which is the botton, we have to define the position of the botton as relative. */
+    position: relative;
+    /* The only thing that we need to do is to hide this shine element by default.For that, let's use overflow hidden. So everything outside the button container is hidden*/
+    overflow: hidden;
+  }
+  /* end of section 1 */
+  
+  /* Section 2 */
+/* Section 2 */
+.section-2{
+  width: 100%;
+  height: 100vh;
+  background-color: #222020;
+  display: flex;
+  align-items: center;
+  padding: 0 10rem;
+  position: relative;
+}
+
+.video-wrapper{
+  width: 80%;
+  height: 80%;
+  /* setting the wrapper as absolute and its parent section-2 as relative */
+  position: absolute;
+  top: 5rem;
+  right: 15rem;
+  /* off-setX off-setY blur-radius color (rgba with transparency level) */
+  box-shadow: 3rem 3rem 3rem rgba(0,0,0,0.7);
+  /* overflow: hidden; */
+}
+.video-wrapper:hover .controls{
+  transform: translateY(0);
+  opacity: 1;
+  transition: opacity 0.8s;
+}
+.video{
+  width: 100%;
+  height: 100%;
+  /* the object-fit CSS property sets how the content of a replaced element such as an <img> or <video> should be resized to fit its container. In this case, the video-wrapper */
+  object-fit: cover;
+  opacity: 0.3;
+  transition: opacity 0.6s;
+}
+.controls{
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.7);
+  /* the calc() function lets you perform calculations when specifying CSS property values. If can be used with <length>, <frequency>, <angle>, <time>, <percentage>, <number>, or <integer> values. The calc() function takes a single expression as its paramenter, with the expression's result used as the value You can use +,/,*,- operators. + and - must be surrounded by white space. Best practice to do this with * and / as well. Using calc() here is to move the controls down outside the video wrapper, and then set overflow to hidden in the video wrapper above to hide the controls from view*/
+  transform: translateY(calc(100% + (-0.4rem)));
+  /* opacity: 0; */
+  transition: transform 0.4s;
+  /* code below handles the animation when the cursor is moved away from the video. All refers to all transitions on the controls. */
+  transition: all 1s;
+}
+.video-bar-wrapper{
+  width: 100%;
+  height: 0.7rem;
+  background-color: #000;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.video-bar{
+  height: 100%;
+  width: 0;
+  background-color: #d30819;
+  transition: width 0.2s linear;
+}
+.buttons{
+  padding: 2rem 1rem 1rem 1rem;
+}
+.buttons button{
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.buttons i{
+  font-size: 2.8rem;
+  color: #fff;
+}
+.section-2-paragraph{
+  width: 80rem;
+  position: absolute;
+  bottom: 20rem;
+  right: 15rem;
+  top: 60rem;
+  font-size: 2rem;
+  color: #ddd;
+  margin: 2rem 0;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: justify;
+  text-shadow: 1rem 1rem 2rem rgba(0,0,0,0.7);
+  line-height: 1.5;
+}
+.fa-quote-left{
+  align-self: flex-start;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+.fa-quote-right{
+  align-self: flex-end;
+  font-size: 2rem;
+
+}
+
+
+  /* End of Section 2 */
+  
+  /* Section 3 */
+ /* styles.css */
+ /* styles.css */
+.section-3 {
+  width: 100%;
+  background-color: #817b7b;
+}
+
+h1 {
+  text-align: center;
+  padding: 40px;
+  margin: 0;
+  color: #101010;
+  font-size: 3em;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+}
+
+.gallery img {
+  margin: 10px;
+  cursor: pointer;
+  max-width: 300px;
+  width: 300px;
+  height: 300px;
+  border-radius: 10px;
+}
+
+/* Lightbox styles */
+#lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  flex-direction: column;
+}
+
+#lightbox img {
+  max-width: 80%;
+  max-height: 60vh;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+}
+
+#close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* Style for navigation buttons */
+#prev-btn,
+#next-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#prev-btn {
+  left: 10px;
+}
+
+#next-btn {
+  right: 10px;
+}
+
+#prev-btn:hover,
+#next-btn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Styles for thumbnails */
+.thumbnail-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.thumbnail {
+  max-width: 50px;
+  width: 100px;
+  cursor: pointer;
+  margin-top: 40px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border: 2px solid #fff;
+  transition: opacity 0.3s;
+}
+
+.thumbnail:hover,
+.thumbnail.active-thumbnail {
+  opacity: 0.7;
+}
+
+
+  /* End of Section 3 */
+  /* Section 4 */
+  .section-4{
+    width: 100%;
+    height: 100vh;
+    background-color: #171718;
+    display: flex;
+    align-items: center;
+    padding: 0 10rem;
+  }
+  .contact-wrapper{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .contact-details{
+    display: flex;
+    margin-bottom: 8rem;
+  }
+  .contact-details div{
+    width: 25rem;
+    text-align: center;
+    margin: 4rem;
+  }
+  .contact-details i{
+    font-size: 5rem;
+    color: #7a1010;
+  }
+  .contact-details h3{
+    font-family: "MADE Soulmaze", sans-serif;
+    font-size: 2.5rem;
+    margin: 2rem 0;
+    color: #ccc;
+  }
+  .contact-details p {
+    font-size: 1.6rem;
+    color: #aaa;
+  }
+  .contact-wrapper h1{
+    font-size: 4rem;
+    color: #ccc;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+  }
+  .contact-form{
+    width: 70rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .contact-form input, .contact-form textarea{
+    padding: 1.5rem;
+    background-color: #444;
+    color: #eee;
+    border: none;
+    margin-bottom: 2rem;
+    font-family: "Oswald", sans-serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    letter-spacing: 0.1rem;
+  }
+  .contact-form textarea{
+    max-width: 100%;
+    max-height: 15rem;
+    min-height: 5.5rem;
+  }
+  .contact-form input[type="submit"]{
+    background-color: #7a1010;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .contact-form input[type="submit"]:hover{
+    background-color: #5f0303;
+  }
+  /* End of Section 4 */
+  .footer{
+    width: 100%;
+    height: 12rem;
+    background-color: #202122;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10rem;
+  }
+  .footer-nav a{
+    font-family: "MADE Soulmaze", sans-serif;
+    font-size: 2rem;
+    color: #ccc;
+    margin-right: 3rem;
+    letter-spacing: 0.1rem;
+    transition: color 0.3s;
+  }
+  .footer-nav a:hover{
+    color: #862323;
+  }
+  .copyright{
+    font-size: 2rem;
+    color: #ddd;
+  }
+  /*  End of Footer */
+  /* Responsive */
+ 
+  @media (max-width: 1800px) {
+    .video-wrapper{
+      width: 90rem;
+      height: 45rem;
+      right: 10rem;
+    }
+    .section-2-paragraph{
+      width: 90rem;
+      right: 10rem;  
+    }
+  }
+  @media(max-width: 1650px){
+    html{
+      font-size: 57%;
+    }
+      .video-wrapper, .video{
+        /* width: 85rem; */
+        height: 40rem;
+        right: 5rem;
+      }
+      .section-2-paragraph{
+        /* width: 85rem; */
+        right: 5rem;
+        bottom: 10rem;  
+      }
+    }
+    @media(max-width: 1500px){
+      .section-heading-line{
+        display: none;
+      }
+    }
+    @media(max-width: 1400px){
+      html{
+        font-size: 45%;
+      }
+      .banner-heading span{
+        font-size: 10rem;
+      }
+      .banner-paragraph{
+        width: 45rem;
+        font-size: 3rem;
+      }
+      .section-2,
+      .section-3,
+      .section-4{
+        flex-direction: column;
+      }
+      .section-2{
+        height: 160vh;
+      }
+       .video-wrapper{
+        top: 7%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80rem;
+       } 
+       .section-2-paragraph{
+        margin-bottom: -9rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80rem;
+       }
+       .section-3{
+        height: auto;
+        padding: 5rem 0 10rem 0;
+       }
+       .section-3 .section-heading{
+        margin-bottom: 7rem;
+       }
+       .swiper-container{
+        width: 100%;
+       }
+       .section-4{
+        height: auto;
+        padding: 5rem 0;
+       }
+      }
+      @media(max-width: 900px){
+        html{
+          font-size: 40%;
+        }
+        .banner{
+          top: 25%;
+        }
+        .banner-heading span{
+          font-size: 8rem;
+        }
+        
+        .footer{
+          padding: 0 5rem;
+        }
+        .footer a{
+          font-size: 1.8rem;
+        }
+      }
+      @media(max-width: 700px){
+        html{
+          font-size: 35%;
+        }
+        .section-2{
+          height: 100vh;
+        }
+        
+        .contact-details div{
+          margin: 3rem 2rem;
+        }
+        .footer{
+          flex-direction: column;
+          justify-content: center;
+        }
+        .footer-nav{
+          margin-bottom: 2rem;
+        }
+      }
+      @media(max-width: 500px){
+        html{
+          font-size: 30%;
+        }
+        .banner-heading span{
+          font-size: 4.5rem;
+          letter-spacing: 2rem;
+          @keyframes animateHeading {
+            /*At the first step, from zero percent to three percent, the headings will be hidden, they will have the exact same properties that we assign to them by default.  */
+            0%{
+              transform: translateZ(8rem);
+              opacity: 0;
+              letter-spacing: 2rem;
+            }
+            /* So at three percent, we need transform, translateZ with zero. Then we have to make the element visible, let's add capacity to one and also decrease lateral spacing,make it one point five rem. */
+            3%{
+              transform: translateZ(0);
+              opacity: 1;
+              letter-spacing: 1rem;
+            }
+            /* After that, from four percent to twenty five percent, the heading will be visible and then from twenty five percent to 28 percent during this three percent, it will hide again. So we need year twenty five percent. */
+            25%{
+              transform: translateZ(0);
+              opacity: 1;
+              letter-spacing: 1rem;
+            }
+            /* and then from twenty five percent to 28 percent during this three percent, it will hide again. for the twenty eight percent. We need to make here some changes, we need to translate the function with 8rem than opacity zero and lateral spacing three rem.*/
+            28%{
+              transform: translateZ(8rem);
+              opacity: 0;
+              letter-spacing: 2rem;
+            }
+            /* And finally, from 28 percent to 100 percent, the heading will be hidden, so at 100 percent. We need to transform, translate the atrium, opacity zero, and that's spacing three rem. */
+            100%{
+              transform: translateZ(8rem);
+              opacity: 0;
+              letter-spacing: 3rem;
+            }
+          }
+        }
+        .video-wrapper{
+          width: 60%;
+        }
+        .section-2-paragraph{
+          width: 60%;
+        }
+        .contact-details div{
+          width: 18rem;
+          margin: 3rem 1rem;
+        }
+        .contact-form{
+          width: 60rem;
+        }
+      }
+      @media all and (max-width: 500px) and (orientation: portrait){
+        .section-1{
+          height: 450px;
+        }
+        .section-2{
+          height: 550px;
+        }
+        .section-2-paragraph{
+          margin-bottom: -10rem;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 80rem;
+         }
+      }
